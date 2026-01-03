@@ -37,10 +37,10 @@ export function Navbar({ location, onLocationClick }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container flex h-16 items-center justify-between gap-4">
+      <div className="container flex h-14 md:h-16 items-center justify-between gap-2 md:gap-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5 shrink-0">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+        <Link to="/" className="flex items-center gap-2 shrink-0">
+          <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
             <Store className="w-4 h-4 text-white" />
           </div>
           <div className="hidden sm:block">
@@ -60,9 +60,9 @@ export function Navbar({ location, onLocationClick }: NavbarProps) {
           </span>
         </button>
 
-        {/* Smart Search - Desktop */}
-        <div className="hidden md:flex flex-1 max-w-md mx-4 relative">
-          <SmartSearch />
+        {/* Smart Search - Visible on all screens */}
+        <div className="flex flex-1 max-w-4xl mx-2 md:mx-4 relative">
+          <SmartSearch className="w-full" />
         </div>
 
         {/* Right Actions */}
@@ -167,10 +167,7 @@ export function Navbar({ location, onLocationClick }: NavbarProps) {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background p-4 animate-slide-up">
-          {/* Mobile Search */}
-          <div className="mb-4">
-            <SmartSearch />
-          </div>
+
 
           {/* Mobile Location */}
           <button

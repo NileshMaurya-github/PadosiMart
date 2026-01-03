@@ -42,6 +42,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "@/hooks/useLocation";
+import { Navbar } from "@/components/marketplace/Navbar";
 import { SmartSearch } from "@/components/SmartSearch";
 import { CategoryRow } from "@/components/marketplace/CategoryRow";
 import { HowItWorks } from "@/components/landing/HowItWorks";
@@ -148,7 +149,8 @@ const dummyShops = [
 export default function Landing() {
   const { session, signOut } = useAuth();
   const navigate = useNavigate();
-  const { locationName, location } = useLocation();
+
+  const { locationName, location, requestLocation } = useLocation();
 
   const handleSignOut = async () => {
     await signOut();
@@ -230,81 +232,9 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-950/80 backdrop-blur-md">
-        <div className="container flex h-16 items-center gap-4">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md">
-              <Store className="w-5 h-5 text-white" />
-            </div>
-            <div className="hidden sm:flex items-baseline gap-1">
-              <span className="font-bold text-xl text-gray-900 dark:text-white">Padosi</span>
-              <span className="font-bold text-xl text-orange-500">Mart</span>
-            </div>
-          </Link>
-
-          {/* Location Button */}
-          <Button variant="ghost" size="sm" className="hidden md:flex gap-2 text-gray-600 dark:text-gray-300">
-            <MapPin className="w-4 h-4 text-orange-500" />
-            <span className="truncate max-w-[150px]">{locationName}</span>
-          </Button>
-
-          {/* Search Bar - Center */}
-          <div className="flex-1 max-w-xl mx-4">
-            <div className="relative">
-              <SmartSearch />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 ml-auto">
-            {/* Wishlist */}
-            <Button variant="ghost" size="icon" className="hidden sm:flex text-gray-500 hover:text-orange-500">
-              <Heart className="w-5 h-5" />
-            </Button>
-
-            {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative text-gray-500 hover:text-orange-500">
-              <ShoppingCart className="w-5 h-5" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            </Button>
-
-            {/* User Menu */}
-            {session ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <User className="w-5 h-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => navigate("/seller")}>
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
-                    Seller Dashboard
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => navigate("/orders")}>
-                    <ShoppingBag className="mr-2 h-4 w-4" />
-                    My Orders
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleSignOut} className="text-red-600">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Sign Out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6">
-                <Link to="/auth">Sign In</Link>
-              </Button>
-            )}
-          </div>
-        </div>
-      </header>
-
+      <Navbar location={locationName} onLocationClick={requestLocation} />
       {/* Hero Banner - Cinematic Glassmorphism */}
-      <div className="relative isolate overflow-hidden bg-gray-900 pb-12 pt-6 sm:pb-20 sm:pt-14">
+      <div className="relative isolate overflow-hidden bg-gray-900 pb-12 pt-4 sm:pb-20 sm:pt-14">
         {/* Background Image with Overlay */}
         <img
           src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -329,7 +259,7 @@ export default function Landing() {
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-flow-col xl:gap-x-8">
 
             {/* Left Content */}
-            <div className="max-w-2xl pt-4 sm:pt-16 lg:pt-0 lg:self-center text-center lg:text-left mx-auto lg:mx-0">
+            <div className="max-w-2xl pt-0 sm:pt-16 lg:pt-0 lg:self-center text-center lg:text-left mx-auto lg:mx-0">
               <div className="flex items-center justify-center lg:justify-start gap-x-3 mb-6">
                 <span className="inline-flex items-center rounded-md bg-orange-400/10 px-2 py-1 text-xs font-medium text-orange-400 ring-1 ring-inset ring-orange-400/20">
                   Update
@@ -338,7 +268,7 @@ export default function Landing() {
                 <span className="text-sm leading-6 text-gray-300">New shops added in your area</span>
               </div>
 
-              <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl leading-[1.1]">
+              <h1 className="mt-0 text-3xl font-bold tracking-tight text-white sm:text-5xl leading-tight">
                 Your Local Market, <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200">
                   Digitized & Delivered.
@@ -584,59 +514,51 @@ export default function Landing() {
       {/* Popular Shops Near You */}
       <section className="py-12 bg-gray-50 dark:bg-gray-900">
         <div className="container">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-end justify-between mb-4 sm:mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Popular Near You</h2>
-                {locationName && (
-                  <Badge variant="secondary" className="text-xs">
-                    <MapPin className="w-3 h-3 mr-1" />
-                    {locationName}
-                  </Badge>
-                )}
-              </div>
-              <p className="text-gray-500 mt-1">Top-rated shops in your area</p>
+              <h2 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white leading-tight">Popular Near You</h2>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">Top-rated shops in your area</p>
             </div>
-            <Button variant="ghost" asChild className="text-orange-500 hover:text-orange-600">
-              <Link to="/discover">See All <ChevronRight className="w-4 h-4 ml-1" /></Link>
+            <Button variant="ghost" asChild className="text-orange-500 hover:text-orange-600 p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent">
+              <Link to="/discover">View All <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" /></Link>
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {displayShops.map((shop: any) => (
               <Link
                 key={shop.id}
                 to={shop.id.startsWith("demo") ? "/discover" : `/shop/${shop.id}`}
               >
                 <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 bg-white dark:bg-gray-800">
-                  <div className="relative h-40">
+                  <div className="relative h-28 sm:h-40">
                     <img
                       src={shop.image_url || `https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=400`}
                       alt={shop.shop_name}
                       className="w-full h-full object-cover"
                     />
                     <Badge
-                      className={`absolute top-3 left-3 ${shop.is_open ? 'bg-green-500' : 'bg-gray-500'}`}
+                      className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] sm:text-xs sm:top-3 sm:left-3 ${shop.is_open ? 'bg-green-500' : 'bg-gray-500'}`}
                     >
                       {shop.is_open ? "Open Now" : "Closed"}
                     </Badge>
                   </div>
-                  <div className="p-4">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-semibold text-gray-900 dark:text-white">{shop.shop_name}</h3>
-                      <div className="flex items-center gap-1 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded">
-                        <Star className="w-3 h-3 fill-green-600 text-green-600" />
-                        <span className="text-sm font-medium text-green-600">{shop.rating?.toFixed(1) || "New"}</span>
+                  <div className="p-2.5 sm:p-4">
+                    <div className="flex items-start justify-between mb-1 sm:mb-2">
+                      <h3 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white truncate pr-1">{shop.shop_name}</h3>
+                      <div className="flex items-center gap-0.5 bg-green-50 dark:bg-green-900/30 px-1.5 py-0.5 rounded shrink-0">
+                        <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-green-600 text-green-600" />
+                        <span className="text-xs sm:text-sm font-medium text-green-600">{shop.rating?.toFixed(1) || "New"}</span>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-500 mb-3 capitalize">{shop.category}</p>
-                    <div className="flex items-center justify-between text-sm">
+                    <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3 capitalize truncate">{shop.category}</p>
+                    <div className="flex items-center justify-between text-[10px] sm:text-sm">
                       <div className="flex items-center gap-1 text-gray-500">
-                        <Clock className="w-4 h-4" />
+                        <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                         <span>15-30 min</span>
                       </div>
                       <div className="flex items-center gap-1 text-gray-500">
-                        <MapPin className="w-4 h-4" />
+                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                         <span>{shop.distance ? `${shop.distance.toFixed(1)} km` : shop.address?.split(",")[0] || "Nearby"}</span>
                       </div>
                     </div>
@@ -651,13 +573,13 @@ export default function Landing() {
       {/* Shop by Category - Shows actual shops */}
       <section className="py-12">
         <div className="container">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-end justify-between mb-4 sm:mb-8">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Shop by Category</h2>
-              <p className="text-gray-500 mt-1">Find what you need from local stores</p>
+              <h2 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white leading-tight">Shop by Category</h2>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">Find what you need locally</p>
             </div>
-            <Button variant="ghost" asChild className="text-orange-500 hover:text-orange-600">
-              <Link to="/discover">View All Shops <ChevronRight className="w-4 h-4 ml-1" /></Link>
+            <Button variant="ghost" asChild className="text-orange-500 hover:text-orange-600 p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent">
+              <Link to="/discover">View All <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" /></Link>
             </Button>
           </div>
 
@@ -831,6 +753,6 @@ export default function Landing() {
           </div>
         </div>
       </footer>
-    </div >
+    </div>
   );
 }

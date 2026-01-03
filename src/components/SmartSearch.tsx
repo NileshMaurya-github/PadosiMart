@@ -160,18 +160,18 @@ export function SmartSearch({ className }: SmartSearchProps) {
         <div className={`relative ${className}`}>
             <form onSubmit={handleSubmit}>
                 <div className="relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <Input
                         ref={inputRef}
                         type="text"
-                        placeholder="Search for products, groceries, medicines..."
+                        placeholder="Search products, groceries..."
                         value={query}
                         onChange={(e) => {
                             setQuery(e.target.value);
                             setIsOpen(true);
                         }}
                         onFocus={() => setIsOpen(true)}
-                        className="pl-12 pr-10 h-11 rounded-xl border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:bg-white dark:focus:bg-gray-800 transition-colors w-full"
+                        className="pl-9 pr-8 h-9 text-sm rounded-full border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 focus:bg-white dark:focus:bg-gray-800 transition-colors w-full"
                     />
                     {query && (
                         <button
@@ -189,7 +189,7 @@ export function SmartSearch({ className }: SmartSearchProps) {
             {isOpen && (query.length >= 2 || recentSearches.length > 0) && (
                 <div
                     ref={dropdownRef}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50 max-h-[70vh] overflow-y-auto"
+                    className="fixed top-[62px] left-4 right-4 sm:absolute sm:top-full sm:left-0 sm:right-0 mt-2 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-[60] max-h-[60vh] sm:max-h-[70vh] overflow-y-auto"
                 >
                     {/* Loading State */}
                     {isLoading && (
@@ -240,8 +240,8 @@ export function SmartSearch({ className }: SmartSearchProps) {
                                         onClick={() => setIsOpen(false)}
                                         className="flex items-center gap-3 mb-3 group"
                                     >
-                                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-100 to-orange-50 dark:from-orange-900/30 dark:to-orange-800/20 flex items-center justify-center">
-                                            <Store className="w-5 h-5 text-orange-500" />
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-orange-100 to-orange-50 dark:from-orange-900/30 dark:to-orange-800/20 flex items-center justify-center">
+                                            <Store className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <p className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors truncate">
@@ -253,8 +253,8 @@ export function SmartSearch({ className }: SmartSearchProps) {
                                             </p>
                                         </div>
                                         <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${shop.is_open
-                                                ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
-                                                : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
+                                            ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
+                                            : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
                                             }`}>
                                             {shop.is_open ? 'Open' : 'Closed'}
                                         </span>
@@ -272,22 +272,22 @@ export function SmartSearch({ className }: SmartSearchProps) {
                                                     <img
                                                         src={product.image_url}
                                                         alt={product.name}
-                                                        className="w-12 h-12 rounded-lg object-cover bg-gray-100"
+                                                        className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg object-cover bg-gray-100"
                                                     />
                                                 ) : (
-                                                    <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                                                        <Package className="w-5 h-5 text-gray-400" />
+                                                    <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                                                        <Package className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                                                     </div>
                                                 )}
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="font-medium text-gray-900 dark:text-white truncate">
+                                                    <p className="font-medium text-sm text-gray-900 dark:text-white truncate">
                                                         {product.name}
                                                     </p>
-                                                    <p className="text-sm text-orange-500 font-semibold">
+                                                    <p className="text-xs sm:text-sm text-orange-500 font-semibold">
                                                         ₹{product.price}
                                                     </p>
                                                 </div>
-                                                <span className="text-xs text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full capitalize">
+                                                <span className="text-[10px] sm:text-xs text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded-full capitalize">
                                                     {product.category}
                                                 </span>
                                             </button>

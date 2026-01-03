@@ -10,6 +10,7 @@ import { WishlistProvider } from "@/contexts/WishlistContext";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { OrderNotificationProvider } from "@/components/notifications/OrderNotificationProvider";
 import { MobileNav } from "@/components/marketplace/MobileNav";
+import ScrollToTop from "@/components/ScrollToTop";
 import Landing from "./pages/Landing";
 import Discover from "./pages/Discover";
 import ShopDetail from "./pages/ShopDetail";
@@ -43,6 +44,7 @@ const App = () => (
               <Sonner />
               <OrderNotificationProvider />
               <BrowserRouter>
+                <ScrollToTop />
                 <CartSheet />
                 <Routes>
                   <Route path="/" element={<Landing />} />

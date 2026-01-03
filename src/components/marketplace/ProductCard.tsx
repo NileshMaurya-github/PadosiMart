@@ -62,10 +62,10 @@ export function ProductCard({
           alt={name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        
+
         {/* Discount Badge */}
         {discount > 0 && (
-          <Badge variant="accent" className="absolute top-2 left-2">
+          <Badge variant="accent" className="absolute top-1.5 left-1.5 px-1 py-0 text-[10px] sm:top-2 sm:left-2">
             -{discount}%
           </Badge>
         )}
@@ -79,22 +79,22 @@ export function ProductCard({
       </div>
 
       {/* Content */}
-      <div className="p-3">
-        <h3 className="font-medium text-foreground line-clamp-2 text-sm mb-2 min-h-[2.5rem]">
+      <div className="p-2 sm:p-3">
+        <h3 className="font-medium text-foreground line-clamp-2 text-xs sm:text-sm mb-1 sm:mb-2 min-h-[2rem] sm:min-h-[2.5rem]">
           {name}
         </h3>
 
         {/* Price */}
-        <div className="flex items-baseline gap-2 mb-3">
-          <span className="text-lg font-bold text-primary">
+        <div className="flex items-baseline gap-1 sm:gap-2 mb-2 sm:mb-3">
+          <span className="text-sm sm:text-lg font-bold text-primary">
             ₹{price.toFixed(0)}
           </span>
           {originalPrice && (
-            <span className="text-sm text-muted-foreground line-through">
+            <span className="text-[10px] sm:text-sm text-muted-foreground line-through">
               ₹{originalPrice.toFixed(0)}
             </span>
           )}
-          <span className="text-xs text-muted-foreground">/{unit}</span>
+          <span className="text-[10px] sm:text-xs text-muted-foreground">/{unit}</span>
         </div>
 
         {/* Quantity Controls or Add Button */}
@@ -104,24 +104,24 @@ export function ProductCard({
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full"
+                className="w-full h-7 sm:h-9 text-xs sm:text-sm"
                 onClick={handleAdd}
               >
-                <Plus className="w-4 h-4 mr-1" />
+                <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                 Add
               </Button>
             ) : (
               <>
-                <div className="flex items-center border border-border rounded-lg">
+                <div className="flex items-center border border-border rounded-lg h-7 sm:h-9">
                   <Button
                     variant="ghost"
                     size="icon-sm"
                     onClick={handleRemove}
-                    className="rounded-r-none"
+                    className="rounded-r-none h-full w-7 sm:w-9 px-0"
                   >
                     <Minus className="w-3 h-3" />
                   </Button>
-                  <span className="w-8 text-center text-sm font-medium">
+                  <span className="w-6 sm:w-8 text-center text-xs sm:text-sm font-medium">
                     {quantity}
                   </span>
                   <Button
@@ -129,7 +129,7 @@ export function ProductCard({
                     size="icon-sm"
                     onClick={handleAdd}
                     disabled={quantity >= stock}
-                    className="rounded-l-none"
+                    className="rounded-l-none h-full w-7 sm:w-9 px-0"
                   >
                     <Plus className="w-3 h-3" />
                   </Button>
@@ -137,10 +137,10 @@ export function ProductCard({
                 <Button
                   variant="default"
                   size="sm"
-                  className="flex-1"
+                  className="flex-1 h-7 sm:h-9"
                   onClick={handleAddToCart}
                 >
-                  <ShoppingCart className="w-4 h-4" />
+                  <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
               </>
             )}

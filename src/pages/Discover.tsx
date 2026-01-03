@@ -175,22 +175,22 @@ export default function Discover() {
       <Navbar location={locationName} onLocationClick={requestLocation} />
 
       <main className="container py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Discover Shops</h1>
-          <p className="text-gray-500">Find the best local businesses near you</p>
+        <div className="mb-6">
+          <h1 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-1">Discover Shops</h1>
+          <p className="text-sm text-gray-500">Find the best local businesses near you</p>
 
           {/* Smart Search Bar */}
-          <div className="mt-6 max-w-2xl relative z-30">
+          <div className="mt-4 max-w-2xl relative z-30">
             <SmartSearch />
           </div>
 
           {/* Quick Filters */}
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-4 flex overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap gap-2 scrollbar-hide snap-x">
             <Button
               variant={!initialCategory || initialCategory === 'all' ? "default" : "outline"}
               size="sm"
               onClick={() => navigate('/discover?category=all')}
-              className={!initialCategory || initialCategory === 'all' ? "bg-orange-500 hover:bg-orange-600 text-white" : ""}
+              className={`rounded-full h-8 text-xs snap-start ${!initialCategory || initialCategory === 'all' ? "bg-orange-500 hover:bg-orange-600 text-white" : ""}`}
             >
               All
             </Button>
@@ -200,7 +200,7 @@ export default function Discover() {
                 variant={initialCategory === cat ? "default" : "outline"}
                 size="sm"
                 onClick={() => navigate(`/discover?category=${cat}`)}
-                className={initialCategory === cat ? "bg-orange-500 hover:bg-orange-600 text-white" : "text-gray-600"}
+                className={`rounded-full h-8 text-xs whitespace-nowrap snap-start ${initialCategory === cat ? "bg-orange-500 hover:bg-orange-600 text-white" : "text-gray-600"}`}
               >
                 {categoryEmojis[cat]} {categoryDisplayNames[cat].split('&')[0].trim()}
               </Button>
@@ -242,21 +242,21 @@ export default function Discover() {
           <div className="space-y-12">
             {Object.entries(displayGroups).map(([category, shops]) => (
               <section key={category}>
-                <div className="flex items-center gap-3 mb-6 border-b pb-4">
-                  <span className="text-3xl">{categoryEmojis[category] || "🏪"}</span>
+                <div className="flex items-center gap-2 mb-3 sm:mb-6 border-b pb-2 sm:pb-4">
+                  <span className="text-2xl sm:text-3xl">{categoryEmojis[category] || "🏪"}</span>
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white capitalize">
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white capitalize">
                       {categoryDisplayNames[category] || category}
                     </h2>
-                    <p className="text-sm text-gray-500">{shops.length} shops available</p>
+                    <p className="text-xs text-gray-500">{shops.length} shops available</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                   {shops.map((shop) => (
                     <Link key={shop.id} to={`/shop/${shop.id}`}>
                       <Card className="overflow-hidden border group hover:border-orange-200 hover:shadow-lg transition-all duration-300">
-                        <div className="relative h-48 overflow-hidden">
+                        <div className="relative h-28 sm:h-48 overflow-hidden">
                           <img
                             src={shop.image_url || "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=600"}
                             alt={shop.shop_name}
@@ -264,44 +264,44 @@ export default function Discover() {
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                           <Badge
-                            className={`absolute top-3 left-3 ${shop.is_open ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-500 hover:bg-gray-600'}`}
+                            className={`absolute top-2 left-2 px-1.5 py-0.5 text-[10px] sm:top-3 sm:left-3 sm:px-2.5 sm:py-1 ${shop.is_open ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-500 hover:bg-gray-600'}`}
                           >
-                            {shop.is_open ? 'Open Now' : 'Closed'}
+                            {shop.is_open ? 'Open' : 'Closed'}
                           </Badge>
                           {shop.distance && shop.distance < 5 && (
-                            <Badge variant="secondary" className="absolute top-3 right-3 bg-white/90 text-gray-900">
+                            <Badge variant="secondary" className="absolute top-2 right-2 px-1.5 py-0.5 text-[10px] sm:top-3 sm:right-3 sm:px-2.5 sm:py-1 bg-white/90 text-gray-900">
                               Nearby
                             </Badge>
                           )}
                         </div>
 
-                        <div className="p-4">
-                          <h3 className="font-bold text-lg text-gray-900 mb-1 group-hover:text-orange-600 transition-colors">
+                        <div className="p-2.5 sm:p-4">
+                          <h3 className="font-bold text-sm sm:text-lg text-gray-900 mb-1 group-hover:text-orange-600 transition-colors truncate">
                             {shop.shop_name}
                           </h3>
-                          <p className="text-sm text-gray-500 line-clamp-1 mb-3">
+                          <p className="text-xs sm:text-sm text-gray-500 line-clamp-1 mb-2 sm:mb-3">
                             {shop.shop_description || "No description available"}
                           </p>
 
-                          <div className="flex items-center justify-between text-sm text-gray-600">
-                            <div className="flex items-center gap-1">
-                              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 mb-2">
+                            <div className="flex items-center gap-0.5 sm:gap-1">
+                              <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400" />
                               <span className="font-medium">{shop.rating?.toFixed(1) || "New"}</span>
                               <span className="text-gray-400">({shop.review_count || 0})</span>
                             </div>
-                            <div className="flex items-center gap-1">
-                              <Clock className="w-4 h-4" />
+                            <div className="flex items-center gap-0.5 sm:gap-1">
+                              <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                               <span>20-30m</span>
                             </div>
                           </div>
 
-                          <div className="mt-4 pt-3 border-t flex items-center justify-between text-xs text-gray-500">
-                            <div className="flex items-center gap-1">
-                              <MapPin className="w-3 h-3" />
-                              <span className="truncate max-w-[150px]">{shop.address}</span>
+                          <div className="pt-2 border-t flex items-center justify-between text-xs text-gray-500">
+                            <div className="flex items-center gap-0.5 sm:gap-1 truncate">
+                              <MapPin className="w-3 h-3 flex-shrink-0" />
+                              <span className="truncate max-w-[100px] sm:max-w-[150px]">{shop.address}</span>
                             </div>
                             {shop.distance !== null && (
-                              <span className="font-medium text-orange-500">
+                              <span className="font-medium text-orange-500 flex-shrink-0">
                                 {shop.distance.toFixed(1)} km
                               </span>
                             )}

@@ -74,7 +74,7 @@ export function ShopProductFilters({
 
         {/* Sort Dropdown */}
         <Select value={sortBy} onValueChange={onSortChange}>
-          <SelectTrigger className="w-[160px]">
+          <SelectTrigger className="w-[130px] h-10 text-xs sm:text-sm">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>
           <SelectContent>
@@ -89,13 +89,11 @@ export function ShopProductFilters({
         {/* Filter Button (Mobile/Tablet) */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 h-10 w-10 p-0 sm:w-auto sm:px-4 shrink-0 border-orange-200 text-orange-600 hover:bg-orange-50 hover:text-orange-700">
               <SlidersHorizontal className="w-4 h-4" />
-              Filters
+              <span className="hidden sm:inline">Filters</span>
               {hasActiveFilters && (
-                <Badge variant="secondary" className="ml-1 px-1.5 py-0.5 text-xs">
-                  Active
-                </Badge>
+                <div className="absolute top-2 right-2 sm:hidden w-2 h-2 bg-orange-500 rounded-full" />
               )}
             </Button>
           </SheetTrigger>
@@ -161,13 +159,14 @@ export function ShopProductFilters({
         </Sheet>
       </div>
 
-      {/* Category Pills (Desktop) */}
+      {/* Category Pills (Visible on all screens) */}
       {categories.length > 0 && (
-        <div className="hidden sm:flex gap-2 overflow-x-auto pb-2">
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           <Button
             variant={selectedCategory === "all" ? "default" : "outline"}
             size="sm"
             onClick={() => onCategoryChange("all")}
+            className={`rounded-full h-8 text-xs border-orange-200 ${selectedCategory === "all" ? "bg-orange-500 hover:bg-orange-600 text-white" : "text-gray-600 hover:bg-orange-50"}`}
           >
             All
           </Button>
@@ -177,7 +176,7 @@ export function ShopProductFilters({
               variant={selectedCategory === cat ? "default" : "outline"}
               size="sm"
               onClick={() => onCategoryChange(cat)}
-              className="whitespace-nowrap"
+              className={`rounded-full h-8 text-xs whitespace-nowrap border-orange-200 ${selectedCategory === cat ? "bg-orange-500 hover:bg-orange-600 text-white" : "text-gray-600 hover:bg-orange-50"}`}
             >
               {cat}
             </Button>

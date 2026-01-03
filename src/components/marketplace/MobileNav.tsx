@@ -42,7 +42,7 @@ export const MobileNav = () => {
 
     return (
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 pb-safe md:hidden">
-            <div className="flex items-center justify-around h-16">
+            <div className="flex items-center justify-around h-12">
                 {navItems.map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -50,17 +50,17 @@ export const MobileNav = () => {
                             key={item.href}
                             to={item.href}
                             className={cn(
-                                "flex flex-col items-center justify-center w-full h-full space-y-1",
+                                "flex flex-col items-center justify-center w-full h-full space-y-0.5",
                                 isActive
                                     ? "text-orange-600 dark:text-orange-500"
                                     : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
                             )}
                         >
                             <item.icon
-                                className={cn("w-6 h-6", isActive && "fill-current")}
+                                className={cn("w-5 h-5", isActive && "fill-current")}
                                 strokeWidth={isActive ? 2.5 : 2}
                             />
-                            <span className="text-[10px] font-medium">{item.label}</span>
+                            <span className="text-[9px] font-medium">{item.label}</span>
                         </Link>
                     );
                 })}

@@ -256,9 +256,9 @@ export default function ShopDetail() {
       <div className="min-h-screen bg-background">
         <Navbar />
         <div className="container py-8">
-          <Button variant="ghost" onClick={() => navigate(-1)} className="mb-6">
+          <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="mb-6">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Go Back
+            Back
           </Button>
           <div className="text-center py-16">
             <Store className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
@@ -279,7 +279,7 @@ export default function ShopDetail() {
       {/* Shop Header */}
       <div className="relative">
         {/* Cover Image */}
-        <div className="h-48 md:h-64 bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden">
+        <div className="h-32 md:h-64 bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden">
           {shop.image_url ? (
             <img
               src={shop.image_url}
@@ -297,10 +297,10 @@ export default function ShopDetail() {
         {/* Shop Info */}
         <div className="container relative -mt-20">
           <Card className="border-none shadow-lg">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
+            <CardContent className="p-4 sm:p-6">
+              <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
                 {/* Shop Avatar */}
-                <div className="w-24 h-24 rounded-2xl bg-background border-4 border-background shadow-lg overflow-hidden shrink-0 -mt-16 md:-mt-20">
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl bg-background border-4 border-background shadow-lg overflow-hidden shrink-0 -mt-10 md:-mt-20">
                   {shop.image_url ? (
                     <img
                       src={shop.image_url}
@@ -318,8 +318,8 @@ export default function ShopDetail() {
                 <div className="flex-1">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <h1 className="text-2xl font-bold text-foreground">
+                      <div className="flex items-center gap-2 md:gap-3 mb-1 sm:mb-2">
+                        <h1 className="text-xl md:text-2xl font-bold text-foreground">
                           {shop.shop_name}
                         </h1>
                         <Badge variant={shop.is_open ? "open" : "closed"}>
@@ -330,8 +330,8 @@ export default function ShopDetail() {
                         {categoryLabels[shop.category] || shop.category}
                       </Badge>
                     </div>
-                    <Button variant="ghost" onClick={() => navigate(-1)}>
-                      <ArrowLeft className="w-4 h-4 mr-2" />
+                    <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="h-8 px-2 text-xs sm:text-sm">
+                      <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                       Back
                     </Button>
                   </div>
@@ -425,7 +425,7 @@ export default function ShopDetail() {
                 <Loader2 className="w-8 h-8 animate-spin text-primary" />
               </div>
             ) : filteredProducts && filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4">
                 {filteredProducts.map((product) => (
                   <div
                     key={product.id}
