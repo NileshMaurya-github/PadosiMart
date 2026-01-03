@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LocalMart - Warm Community Marketplace Design System */
+
+@layer base {
+  :root {
+    /* Warm cream background */
+    --background: 40 33% 98%;
+    --foreground: 20 25% 15%;
+
+    /* Cards with subtle warmth */
+    --card: 40 30% 99%;
+    --card-foreground: 20 25% 15%;
+
+    --popover: 40 30% 99%;
+    --popover-foreground: 20 25% 15%;
+
+    /* Earthy forest green - trust, local, fresh */
+    --primary: 152 45% 32%;
+    --primary-foreground: 40 33% 98%;
+    --primary-glow: 152 45% 42%;
+
+    /* Warm sand secondary */
+    --secondary: 35 25% 92%;
+    --secondary-foreground: 20 25% 20%;
+
+    /* Muted warm grays */
+    --muted: 35 15% 90%;
+    --muted-foreground: 20 15% 45%;
+
+    /* Terracotta accent - warmth, action */
+    --accent: 16 65% 55%;
+    --accent-foreground: 40 33% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Warm borders */
+    --border: 35 20% 88%;
+    --input: 35 20% 88%;
+    --ring: 152 45% 32%;
+
+    --radius: 0.75rem;
+
+    /* Custom marketplace tokens */
+    --success: 152 55% 40%;
+    --warning: 38 92% 50%;
+    --info: 200 80% 50%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(152, 45%, 32%) 0%, hsl(152, 55%, 25%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(16, 65%, 55%) 0%, hsl(35, 70%, 50%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(40, 30%, 99%) 0%, hsl(40, 25%, 96%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(20 25% 15% / 0.05);
+    --shadow-md: 0 4px 12px -2px hsl(20 25% 15% / 0.08), 0 2px 4px -2px hsl(20 25% 15% / 0.04);
+    --shadow-lg: 0 12px 32px -4px hsl(20 25% 15% / 0.12), 0 4px 8px -2px hsl(20 25% 15% / 0.06);
+    --shadow-glow: 0 0 24px hsl(152 45% 32% / 0.15);
+    --shadow-accent: 0 8px 24px -4px hsl(16 65% 55% / 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 40 25% 97%;
+    --sidebar-foreground: 20 25% 25%;
+    --sidebar-primary: 152 45% 32%;
+    --sidebar-primary-foreground: 40 33% 98%;
+    --sidebar-accent: 35 20% 93%;
+    --sidebar-accent-foreground: 20 25% 20%;
+    --sidebar-border: 35 20% 88%;
+    --sidebar-ring: 152 45% 32%;
+  }
+
+  .dark {
+    --background: 20 25% 8%;
+    --foreground: 40 20% 95%;
+
+    --card: 20 20% 12%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 20 20% 12%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 152 50% 45%;
+    --primary-foreground: 20 25% 8%;
+    --primary-glow: 152 50% 55%;
+
+    --secondary: 20 15% 18%;
+    --secondary-foreground: 40 20% 90%;
+
+    --muted: 20 15% 20%;
+    --muted-foreground: 40 15% 60%;
+
+    --accent: 16 70% 50%;
+    --accent-foreground: 20 25% 8%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 15% 20%;
+    --input: 20 15% 20%;
+    --ring: 152 50% 45%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(152, 50%, 35%) 0%, hsl(152, 45%, 25%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(16, 70%, 45%) 0%, hsl(35, 65%, 45%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(20, 20%, 12%) 0%, hsl(20, 18%, 10%) 100%);
+
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 12px 32px -4px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 24px hsl(152 50% 45% / 0.2);
+    --shadow-accent: 0 8px 24px -4px hsl(16 70% 50% / 0.3);
+
+    --sidebar-background: 20 20% 10%;
+    --sidebar-foreground: 40 20% 90%;
+    --sidebar-primary: 152 50% 45%;
+    --sidebar-primary-foreground: 20 25% 8%;
+    --sidebar-accent: 20 15% 16%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 20 15% 18%;
+    --sidebar-ring: 152 50% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    @apply backdrop-blur-md bg-white/80 dark:bg-black/40;
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-warm {
+    background: var(--gradient-warm);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* Animation delays for staggered effects */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
