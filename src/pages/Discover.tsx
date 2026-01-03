@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { SmartSearch } from "@/components/SmartSearch";
 
 type Seller = {
   id: string;
@@ -79,9 +80,9 @@ export default function Discover() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const initialCategory = searchParams.get("category");
+  const searchQuery = searchParams.get("search") || "";
 
   const { location, locationName, isLoadingLocation, locationError, requestLocation } = useLocation();
-  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch all approved sellers
   const { data: sellers, isLoading: sellersLoading } = useQuery({
@@ -109,9 +110,9 @@ export default function Discover() {
         : null
     }));
 
-    // Filter by search term
-    if (searchTerm) {
-      const lowerInfos = searchTerm.toLowerCase();
+    // Filter by search term from URL
+    if (searchQuery) {
+      const lowerInfos = searchQuery.toLowerCase();
       shops = shops.filter(s =>
         s.shop_name.toLowerCase().includes(lowerInfos) ||
         s.category.toLowerCase().includes(lowerInfos) ||
@@ -128,7 +129,7 @@ export default function Discover() {
     });
 
     return shops;
-  }, [sellers, location, searchTerm]);
+  }, [sellers, location, searchQuery]);
 
   // Group by category
   const groupedShops = useMemo(() => {
@@ -178,15 +179,9 @@ export default function Discover() {
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Discover Shops</h1>
           <p className="text-gray-500">Find the best local businesses near you</p>
 
-          {/* Search Bar */}
-          <div className="mt-6 max-w-md relative">
-            <Input
-              placeholder="Search stores, categories..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-800"
-            />
-            <Store className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
+          {/* Smart Search Bar */}
+          <div className="mt-6 max-w-2xl relative z-30">
+            <SmartSearch />
           </div>
 
           {/* Quick Filters */}

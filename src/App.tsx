@@ -9,6 +9,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import { WishlistProvider } from "@/contexts/WishlistContext";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { OrderNotificationProvider } from "@/components/notifications/OrderNotificationProvider";
+import { MobileNav } from "@/components/marketplace/MobileNav";
 import Landing from "./pages/Landing";
 import Discover from "./pages/Discover";
 import ShopDetail from "./pages/ShopDetail";
@@ -65,6 +66,7 @@ const App = () => (
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
+                <MobileNav />
               </BrowserRouter>
             </TooltipProvider>
           </WishlistProvider>

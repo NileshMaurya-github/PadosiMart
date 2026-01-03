@@ -87,6 +87,29 @@ export default function ShopDetail() {
   const { data: shop, isLoading: shopLoading } = useQuery({
     queryKey: ["shop", shopId],
     queryFn: async () => {
+      // Handle demo shops
+      if (shopId?.startsWith("demo-")) {
+        const parts = shopId.split("-");
+        const category = parts[1] || "general";
+        const index = parts[2] || "1";
+
+        return {
+          id: shopId,
+          shop_name: `${category.charAt(0).toUpperCase() + category.slice(1)} Store ${index}`,
+          shop_description: "This is a demonstration shop showing standard features.",
+          category: category,
+          address: `123 Demo Street, Block ${index}, Tech Park`,
+          phone: "+91 98765 43210",
+          image_url: `https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?w=800&h=400`,
+          is_open: true,
+          rating: 4.5,
+          review_count: 120,
+          opening_hours: "09:00 AM",
+          closing_hours: "10:00 PM",
+          delivery_options: ["self_delivery", "customer_pickup"]
+        } as Seller;
+      }
+
       const { data, error } = await supabase
         .from("sellers")
         .select("*")
@@ -105,6 +128,36 @@ export default function ShopDetail() {
   const { data: products, isLoading: productsLoading } = useQuery({
     queryKey: ["shop-products", shopId],
     queryFn: async () => {
+      // Handle demo products
+      if (shopId?.startsWith("demo-")) {
+        // Generate 15 mock products
+        const parts = shopId.split("-");
+        const category = parts[1] || "general";
+
+        const demoImages: Record<string, string> = {
+          grocery: "https://images.pexels.com/photos/128402/pexels-photo-128402.jpeg?w=400",
+          medical: "https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?w=400",
+          electronics: "https://images.pexels.com/photos/303383/pexels-photo-303383.jpeg?w=400",
+          food: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?w=400",
+          clothing: "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?w=400",
+          services: "https://images.pexels.com/photos/5691622/pexels-photo-5691622.jpeg?w=400"
+        };
+
+        // Generate 15 mock products
+        return Array.from({ length: 15 }).map((_, i) => ({
+          id: `demo-prod-${shopId}-${i}`,
+          name: `${category.charAt(0).toUpperCase() + category.slice(1)} Item ${i + 1}`,
+          description: `High quality ${category} item for your daily needs.`,
+          price: 50 + (i * 25),
+          original_price: i % 2 === 0 ? 60 + (i * 25) : null,
+          category: category, // All in shop category for simplicity, or vary
+          stock: 50,
+          unit: "pack",
+          image_url: demoImages[category] || demoImages.grocery,
+          is_available: true
+        })) as Product[];
+      }
+
       const { data, error } = await supabase
         .from("products")
         .select("*")
@@ -378,8 +431,8 @@ export default function ShopDetail() {
                     key={product.id}
                     id={`product-${product.id}`}
                     className={`transition-all duration-500 ${highlightedId === product.id
-                        ? 'ring-4 ring-orange-500 ring-offset-2 rounded-2xl scale-105 shadow-xl'
-                        : ''
+                      ? 'ring-4 ring-orange-500 ring-offset-2 rounded-2xl scale-105 shadow-xl'
+                      : ''
                       }`}
                   >
                     <ProductCard

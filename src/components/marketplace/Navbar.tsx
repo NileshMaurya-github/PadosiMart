@@ -1,6 +1,5 @@
-import { MapPin, Search, User, Menu, X, LogOut, Store, LayoutDashboard, Grid3X3, Heart } from "lucide-react";
+import { MapPin, User, Menu, X, LogOut, Store, LayoutDashboard, Grid3X3, Heart, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,8 +12,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { CartButton } from "@/components/cart/CartButton";
-import { GlobalSearch } from "@/components/search/GlobalSearch";
-import { ShoppingCart } from "lucide-react";
+import { SmartSearch } from "@/components/SmartSearch";
 
 interface NavbarProps {
   location?: string;
@@ -23,7 +21,6 @@ interface NavbarProps {
 
 export function Navbar({ location, onLocationClick }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const { user, signOut, userRole } = useAuth();
   const navigate = useNavigate();
 
@@ -63,18 +60,9 @@ export function Navbar({ location, onLocationClick }: NavbarProps) {
           </span>
         </button>
 
-        {/* Search Bar - Desktop */}
-        <div className="hidden md:flex flex-1 max-w-md mx-4">
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="relative w-full h-10 pl-10 pr-4 rounded-lg border border-input bg-background text-sm text-muted-foreground text-left hover:bg-secondary/50 transition-colors"
-          >
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <span>Search shops & products...</span>
-            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
-              <span className="text-xs">⌘</span>K
-            </kbd>
-          </button>
+        {/* Smart Search - Desktop */}
+        <div className="hidden md:flex flex-1 max-w-md mx-4 relative">
+          <SmartSearch />
         </div>
 
         {/* Right Actions */}
@@ -180,16 +168,9 @@ export function Navbar({ location, onLocationClick }: NavbarProps) {
       {isMobileMenuOpen && (
         <div className="md:hidden border-t border-border bg-background p-4 animate-slide-up">
           {/* Mobile Search */}
-          <button
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              setSearchOpen(true);
-            }}
-            className="relative w-full h-10 pl-10 pr-4 rounded-lg border border-input bg-background text-sm text-muted-foreground text-left hover:bg-secondary/50 transition-colors mb-4"
-          >
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <span>Search shops & products...</span>
-          </button>
+          <div className="mb-4">
+            <SmartSearch />
+          </div>
 
           {/* Mobile Location */}
           <button
@@ -203,9 +184,6 @@ export function Navbar({ location, onLocationClick }: NavbarProps) {
           </button>
         </div>
       )}
-
-      {/* Global Search Dialog */}
-      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
     </header>
   );
 }
