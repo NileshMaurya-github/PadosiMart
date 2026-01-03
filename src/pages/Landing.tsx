@@ -18,6 +18,7 @@ import {
   Clock,
   Truck,
   Shield,
+  Plus,
   ShieldCheck, // Added
   CheckCircle,
   Zap,
@@ -302,149 +303,232 @@ export default function Landing() {
         </div>
       </header>
 
-      {/* Hero Banner - Enhanced 3D */}
-      <div className="relative overflow-hidden bg-white dark:bg-gray-950 pt-10 pb-20 lg:pt-20 lg:pb-32">
-        {/* Abstract Background Shapes - Softer */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-          <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-orange-100/60 dark:bg-orange-900/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[10%] left-[-10%] w-[600px] h-[600px] bg-blue-50/60 dark:bg-blue-900/10 rounded-full blur-[120px]" />
+      {/* Hero Banner - Cinematic Glassmorphism */}
+      <div className="relative isolate overflow-hidden bg-gray-900 pb-12 pt-6 sm:pb-20 sm:pt-14">
+        {/* Background Image with Overlay */}
+        <img
+          src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          alt="Market background"
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20 blur-sm"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"
+        />
+        <div
+          className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white/5 shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"
+        />
+
+        {/* Tech Grid Background Pattern */}
+        <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle, #6366f1 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
         </div>
 
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-10">
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-flow-col xl:gap-x-8">
 
             {/* Left Content */}
-            <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-orange-50 dark:bg-orange-900/20 border border-orange-100 dark:border-orange-800 text-orange-700 dark:text-orange-400 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-6 shadow-sm hover:shadow-md transition-all cursor-default">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            <div className="max-w-2xl pt-4 sm:pt-16 lg:pt-0 lg:self-center text-center lg:text-left mx-auto lg:mx-0">
+              <div className="flex items-center justify-center lg:justify-start gap-x-3 mb-6">
+                <span className="inline-flex items-center rounded-md bg-orange-400/10 px-2 py-1 text-xs font-medium text-orange-400 ring-1 ring-inset ring-orange-400/20">
+                  Update
                 </span>
-                Live in your neighborhood
+                <span className="h-4 w-px bg-white/20" />
+                <span className="text-sm leading-6 text-gray-300">New shops added in your area</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-[1.1]">
-                Your Neighborhood, <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">
-                  Now Online
+              <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl leading-[1.1]">
+                Your Local Market, <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200">
+                  Digitized & Delivered.
                 </span>
               </h1>
 
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Discover local shops near you. Fresh groceries, medicines, electronics, and more—all from trusted neighborhood sellers, delivered to your door.
+              <p className="mt-6 text-lg leading-8 text-gray-300">
+                Experience the warmth of your neighborhood shops with the convenience of modern technology. Fresh groceries, pharmacy, and food—delivered in minutes.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10 sm:mb-12">
-                <Button size="lg" asChild className="bg-orange-600 hover:bg-orange-700 text-white rounded-full px-8 h-12 sm:h-14 text-base sm:text-lg font-semibold shadow-xl shadow-orange-500/20 transition-transform hover:-translate-y-1">
+              <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-4">
+                <Button size="lg" asChild className="bg-orange-500 hover:bg-orange-400 text-white rounded-full px-8 h-12 text-base shadow-lg shadow-orange-500/30">
                   <Link to="/discover">
-                    <MapPin className="w-5 h-5 mr-2" />
-                    Find Nearby Shops
+                    Start Shopping
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="border-2 border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full px-8 h-12 sm:h-14 text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-200">
-                  <Link to="/categories">
-                    View Categories
+                <Button size="lg" variant="outline" asChild className="rounded-full px-8 h-12 text-base border-white/20 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm">
+                  <Link to="/seller/register">
+                    Become a Seller
                   </Link>
                 </Button>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="flex items-center justify-center lg:justify-start gap-8 pt-8 border-t border-gray-100 dark:border-gray-800">
+              {/* Trust Metrics */}
+              <div className="mt-14 flex items-center justify-center lg:justify-start gap-8 border-t border-white/10 pt-8">
                 <div>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">15m</p>
-                  <p className="text-xs sm:text-sm text-gray-500">Avg Delivery</p>
+                  <h3 className="text-2xl font-bold text-white">1,200+</h3>
+                  <p className="text-xs text-gray-400">Active Shops</p>
                 </div>
-                <div className="w-px h-10 bg-gray-200 dark:bg-gray-800" />
                 <div>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">100%</p>
-                  <p className="text-xs sm:text-sm text-gray-500">Secure Payment</p>
+                  <h3 className="text-2xl font-bold text-white">15min</h3>
+                  <p className="text-xs text-gray-400">Avg Delivery</p>
                 </div>
-                <div className="w-px h-10 bg-gray-200 dark:bg-gray-800" />
                 <div>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">24/7</p>
-                  <p className="text-xs sm:text-sm text-gray-500">Support</p>
+                  <h3 className="text-2xl font-bold text-white">4.9/5</h3>
+                  <p className="text-xs text-gray-400">User Rating</p>
                 </div>
               </div>
             </div>
 
-            {/* Right Side - 3D Ecosystem Composition */}
-            <div className="hidden lg:flex justify-center items-center relative h-[600px]">
-              {/* Decorative Background Blobs */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-200/20 dark:bg-orange-900/10 rounded-full blur-3xl animate-pulse" />
+            {/* Right Side - Realistic App Mockup */}
+            <div className="hidden lg:block mt-8 sm:mt-24 lg:col-span-1 lg:mt-0 lg:self-center">
+              <div className="relative mx-auto w-[280px] h-[560px] sm:w-[300px] sm:h-[600px] bg-gray-900 rounded-[3rem] border-[8px] border-gray-900 shadow-2xl overflow-hidden">
+                {/* Dynamic Island */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-b-2xl z-20"></div>
 
-              <div className="relative w-full max-w-[500px] h-[500px] perspective-1000">
-                {/* Central Hub */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                  <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center w-48 hover:scale-105 transition-transform duration-300">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-orange-500/20">
-                      <Store className="w-8 h-8 text-white" />
+                {/* Screen Content */}
+                <div className="w-full h-full bg-gray-50 dark:bg-gray-800 overflow-hidden relative font-sans flex flex-col">
+
+                  {/* Status Bar Area */}
+                  <div className="h-10 w-full bg-white dark:bg-gray-900 z-10"></div>
+
+                  {/* App Header */}
+                  <div className="px-5 py-2 bg-white dark:bg-gray-900 flex flex-col shadow-sm z-10">
+                    <div className="flex items-center gap-1 text-[10px] text-gray-500 font-bold uppercase tracking-wide">
+                      <MapPin className="w-3 h-3 text-orange-500" />
+                      Delivering to
                     </div>
-                    <h3 className="font-bold text-gray-900 dark:text-white text-lg">Local Shops</h3>
-                    <p className="text-xs text-gray-500">Connected Hub</p>
+                    <div className="flex items-center gap-1">
+                      <span className="font-bold text-gray-900 dark:text-white text-sm">Home • Sector 15</span>
+                      <ChevronRight className="w-3 h-3 text-gray-400" />
+                    </div>
                   </div>
-                </div>
 
-                {/* Floating Card 1: Fast Delivery (Top Right) */}
-                <div className="absolute top-10 right-0 z-10 animate-bounce" style={{ animationDuration: '4s' }}>
-                  <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 w-40 transform rotate-6 hover:rotate-0 transition-transform">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-full text-green-600 dark:text-green-400"><Truck className="w-5 h-5" /></div>
-                      <span className="font-bold text-sm text-green-700 dark:text-green-400">Fast</span>
+                  {/* Search Bar */}
+                  <div className="px-5 py-3 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+                    <div className="bg-gray-100 dark:bg-gray-800 rounded-xl px-3 py-2 flex items-center gap-2">
+                      <Search className="w-4 h-4 text-gray-400" />
+                      <span className="text-xs text-gray-400">Search "milk", "medicines"...</span>
                     </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">Super fast delivery from nearby stores</p>
                   </div>
-                </div>
 
-                {/* Floating Card 2: Fresh Quality (Bottom Left) */}
-                <div className="absolute bottom-20 left-0 z-10 animate-bounce" style={{ animationDuration: '5s', animationDelay: '1s' }}>
-                  <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 w-44 transform -rotate-3 hover:rotate-0 transition-transform">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-full text-blue-600"><ShieldCheck className="w-5 h-5" /></div>
-                      <span className="font-bold text-sm text-blue-700 dark:text-blue-400">Quality</span>
-                    </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">100% Genuine products & verified sellers</p>
-                  </div>
-                </div>
+                  {/* Body Content - Scrollable */}
+                  <div className="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
 
-                {/* Floating Card 3: Top Rated (Top Left) */}
-                <div className="absolute top-20 left-4 z-10 animate-bounce" style={{ animationDuration: '6s', animationDelay: '0.5s' }}>
-                  <div className="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex items-center gap-3 transform -rotate-6">
-                    <div className="flex -space-x-2">
-                      {[1, 2, 3].map(i => (
-                        <div key={i} className={`w-8 h-8 rounded-full border-2 border-white dark:border-gray-800 bg-gray-200 flex items-center justify-center text-[10px] overflow-hidden`}>
-                          <User className="w-4 h-4 text-gray-400" />
-                        </div>
-                      ))}
+                    {/* Promo Banner */}
+                    <div className="w-full h-32 bg-gradient-to-r from-orange-400 to-pink-500 rounded-2xl p-4 text-white relative overflow-hidden shrink-0">
+                      <div className="relative z-10 w-2/3">
+                        <p className="text-xs font-bold opacity-90">First Order</p>
+                        <p className="text-xl font-bold leading-tight mt-1">50% OFF</p>
+                        <p className="text-[10px] mt-2 bg-white/20 inline-block px-2 py-1 rounded">Code: NEW50</p>
+                      </div>
+                      <div className="absolute right-0 bottom-0 w-24 h-24 bg-white/20 rounded-full blur-2xl transform translate-x-4 translate-y-4"></div>
                     </div>
+
+                    {/* Categories Grid */}
+                    <div className="grid grid-cols-4 gap-3">
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-xl">🥦</div>
+                        <span className="text-[10px] text-gray-600 dark:text-gray-300">Grocery</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-xl">🍔</div>
+                        <span className="text-[10px] text-gray-600 dark:text-gray-300">Food</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-xl">💊</div>
+                        <span className="text-[10px] text-gray-600 dark:text-gray-300">Meds</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center text-xl">📦</div>
+                        <span className="text-[10px] text-gray-600 dark:text-gray-300">Package</span>
+                      </div>
+                    </div>
+
+                    {/* Featured Shops */}
                     <div>
-                      <div className="flex text-yellow-400 text-xs"><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" /></div>
-                      <p className="text-[10px] font-bold text-gray-900 dark:text-white">Happy Customers</p>
+                      <div className="flex justify-between items-center mb-2">
+                        <h4 className="font-bold text-gray-900 dark:text-white text-xs">Recommended</h4>
+                        <span className="text-[10px] text-orange-500 font-bold">See All</span>
+                      </div>
+                      <div className="bg-white dark:bg-gray-900 p-2 rounded-xl flex gap-3 shadow-sm">
+                        <div className="w-12 h-12 rounded-lg bg-gray-200 shrink-0 overflow-hidden">
+                          <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=100" className="w-full h-full object-cover" alt="Food" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs font-bold text-gray-900 dark:text-white">The Burger Club</p>
+                          <p className="text-[10px] text-gray-500">American • 25 mins</p>
+                          <div className="mt-1 flex gap-1">
+                            <Star className="w-2 h-2 text-yellow-400 fill-current" />
+                            <span className="text-[10px] text-gray-400 leading-none">4.5 (1k+)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Bottom Navigation */}
+                  <div className="h-14 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 flex justify-around items-center px-4 relative z-10">
+                    <div className="flex flex-col items-center gap-0.5">
+                      <Store className="w-5 h-5 text-orange-500" />
+                      <span className="text-[9px] font-bold text-orange-500">Home</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-0.5">
+                      <Search className="w-5 h-5 text-gray-400" />
+                      <span className="text-[9px] text-gray-400">Search</span>
+                    </div>
+
+                    {/* Floating Cart Button in Middle */}
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-orange-500 rounded-full shadow-lg shadow-orange-500/40 flex items-center justify-center border-4 border-gray-50 dark:border-gray-800">
+                      <ShoppingBag className="w-5 h-5 text-white" />
+                    </div>
+
+                    <div className="flex flex-col items-center gap-0.5">
+                      <Heart className="w-5 h-5 text-gray-400" />
+                      <span className="text-[9px] text-gray-400">Likes</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-0.5">
+                      <User className="w-5 h-5 text-gray-400" />
+                      <span className="text-[9px] text-gray-400">Profile</span>
                     </div>
                   </div>
-                </div>
 
-                {/* Floating Card 4: Categories (Bottom Right) */}
-                <div className="absolute bottom-32 right-4 z-10 animate-bounce" style={{ animationDuration: '4.5s', animationDelay: '1.5s' }}>
-                  <div className="bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 transform rotate-3">
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="bg-orange-50 p-2 rounded-lg text-center"><span className="text-xl">🍔</span><p className="text-[8px] text-gray-500">Food</p></div>
-                      <div className="bg-green-50 p-2 rounded-lg text-center"><span className="text-xl">🥦</span><p className="text-[8px] text-gray-500">Grocery</p></div>
-                      <div className="bg-blue-50 p-2 rounded-lg text-center"><span className="text-xl">💊</span><p className="text-[8px] text-gray-500">Meds</p></div>
-                      <div className="bg-purple-50 p-2 rounded-lg text-center"><span className="text-xl">📦</span><p className="text-[8px] text-gray-500">More</p></div>
+                  {/* Active Order Toast (Floating) */}
+                  <div className="absolute bottom-20 left-4 right-4 bg-gray-900/90 backdrop-blur-md rounded-xl p-3 shadow-2xl border border-white/10 z-20 animate-slide-up">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center animate-pulse">
+                        <Truck className="w-4 h-4 text-green-500" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-[10px] text-gray-400 font-medium uppercase">Order #2045</p>
+                        <p className="text-xs text-white font-bold">Arriving in 6 mins</p>
+                      </div>
                     </div>
                   </div>
+
                 </div>
-
-                {/* Connecting Lines (SVG) */}
-                <svg className="absolute inset-0 w-full h-full -z-10 pointer-events-none opacity-20 dark:opacity-10">
-                  <path d="M250 250 L400 100" stroke="orange" strokeWidth="2" strokeDasharray="5,5" />
-                  <path d="M250 250 L100 400" stroke="orange" strokeWidth="2" strokeDasharray="5,5" />
-                  <path d="M250 250 L100 100" stroke="orange" strokeWidth="2" strokeDasharray="5,5" />
-                  <path d="M250 250 L400 350" stroke="orange" strokeWidth="2" strokeDasharray="5,5" />
-                </svg>
-
               </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
         </div>
       </div>
